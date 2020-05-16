@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<string.h>
 using namespace std;
 
 int main(){
@@ -13,8 +14,10 @@ int main(){
         int total=0;
         int record[26]={0};//a-z
         char matrix[H][W];
-        int Color[H*W]={0};
-        int Distance[H*W]={0};
+        int Color[H*W];
+        memset(Color,0,H*W*sizeof(int));
+        int Distance[H*W];
+        memset(Distance,0,H*W*sizeof(int));
         vector <int> AdjList [H*W];//store index
         queue <int> Queue;
         for(int i=0;i<H;i++)
@@ -52,7 +55,7 @@ int main(){
                 total++;
                 while(!Queue.empty()){
                     int f = Queue.front();
-                    for(int k=0;k<AdjList[f].size();k++){//k=f's neighbor
+                    for(unsigned int k=0;k<AdjList[f].size();k++){//k=f's neighbor
                         if(Color[AdjList[f].at(k)]==0){
                             Queue.push(AdjList[f].at(k));
                             Color[AdjList[f].at(k)]=1;
